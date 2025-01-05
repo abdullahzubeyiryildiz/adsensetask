@@ -9,6 +9,8 @@ Bu proje, bir Laravel uygulamasında Google AdSense ile nasıl entegre olunacağ
 - Bir Google AdSense hesabına ait reklam birimlerini getirme ve listeleme.
 - AdSense API mantığını kapsayan bir servis katmanı.
 
+
+Services\AdSenseService.php
 ---
 
 ## Kurulum Talimatları
