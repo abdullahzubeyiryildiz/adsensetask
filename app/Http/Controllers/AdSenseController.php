@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Services\AdSenseService;
 use Illuminate\Http\Request;
+use App\Services\AdSenseService;
 
 class AdSenseController extends Controller
 {
@@ -18,20 +18,19 @@ class AdSenseController extends Controller
         $authUrl = $this->adsenseService->authenticate();
 
         if ($authUrl) {
-            return redirect($authUrl); // Kullanıcıyı Google'a yönlendir
+            return redirect($authUrl);
         }
 
-        // Kimlik doğrulaması başarılı olduktan sonra reklam birimlerini listele
         $adUnits = $this->adsenseService->getAdUnits();
         return view('adsense.index', ['adUnits' => $adUnits]);
     }
 
     public function callback(Request $request)
     {
-        // Google'dan dönen authCode ile kimlik doğrulamasını tamamla
+
         $authCode = $request->get('code');
         $this->adsenseService->authenticate($authCode);
 
-        return redirect()->route('adsense.index'); // Yeniden yönlendir
+        return redirect()->route('adsense.index');
     }
 }
