@@ -13,17 +13,14 @@ class AdSenseController extends Controller
         $this->adsenseService = $adsenseService;
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $authUrl = $this->adsenseService->authenticate();
+        $this->adsenseService->saveAdUnitsToDatabase();
 
-        if ($authUrl) {
-            return redirect($authUrl);
-        }
-
-        $adUnits = $this->adsenseService->getAdUnits();
-        return view('adsense.index', ['adUnits' => $adUnits]);
+        $ads = \App\Models\Ad::all();
+        return view('adsense.index', compact('ads'));
     }
+
 
     public function callback(Request $request)
     {

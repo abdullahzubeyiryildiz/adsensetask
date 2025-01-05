@@ -48,4 +48,20 @@ class AdSenseService
         $accountId = $accounts->getItems()[0]->getName();
         return $this->adsense->accounts_adunits->listAccountsAdunits($accountId);
     }
+
+    public function saveAdUnitsToDatabase()
+    {
+        $adUnits = $this->getAdUnits();
+
+        foreach ($adUnits as $adUnit) {
+            Ad::updateOrCreate(
+                ['ad_unit_id' => $adUnit->getName()],
+                [
+                    'name' => $adUnit->getDisplayName(),
+                    'location' => 'header',
+                    'content' => null,
+                ]
+            );
+        }
+    }
 }

@@ -14,15 +14,17 @@
                 <tr>
                     <th>Reklam ID</th>
                     <th>Reklam Adı</th>
-                    <th>Boyutlar</th>
+                    <th>Konum</th>
+                    <th>Durum</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($adUnits as $adUnit)
+                @foreach ($ads as $ad)
                     <tr>
-                        <td>{{ $adUnit->getName() }}</td>
-                        <td>{{ $adUnit->getDisplayName() }}</td>
-                        <td>{{ $adUnit->getContentAdsSettings()->getSize()->getWidth() }} x {{ $adUnit->getContentAdsSettings()->getSize()->getHeight() }}</td>
+                        <td>{{ $ad->ad_unit_id }}</td>
+                        <td>{{ $ad->name }}</td>
+                        <td>{{ $ad->location }}</td>
+                        <td>{{ $ad->is_active ? 'Aktif' : 'Pasif' }}</td>
                     </tr>
                 @endforeach
             </tbody>
