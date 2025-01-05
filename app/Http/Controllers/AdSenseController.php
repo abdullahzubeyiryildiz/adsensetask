@@ -1,4 +1,6 @@
 <?php
+
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -21,10 +23,8 @@ class AdSenseController extends Controller
         return view('adsense.index', compact('ads'));
     }
 
-
     public function callback(Request $request)
     {
-
         $authCode = $request->get('code');
         $this->adsenseService->authenticate($authCode);
 
