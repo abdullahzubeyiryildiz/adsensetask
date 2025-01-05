@@ -12,21 +12,22 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Ad Unit Name</th>
-                    <th>Ad Unit ID</th>
+                    <th>Reklam ID</th>
+                    <th>Reklam Adı</th>
+                    <th>Boyutlar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($adUnits as $index => $adUnit)
+                @foreach ($adUnits as $adUnit)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
                         <td>{{ $adUnit->getName() }}</td>
-                        <td>{{ $adUnit->getId() }}</td>
+                        <td>{{ $adUnit->getDisplayName() }}</td>
+                        <td>{{ $adUnit->getContentAdsSettings()->getSize()->getWidth() }} x {{ $adUnit->getContentAdsSettings()->getSize()->getHeight() }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
     </div>
 </body>
 </html>
